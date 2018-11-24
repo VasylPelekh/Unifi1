@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import ua.unifi1.domain.PanelDTO;
+import ua.unifi1.entity.FielsType;
 import ua.unifi1.service.FileStorageService;
 import ua.unifi1.service.PanelService;
 
@@ -92,12 +93,18 @@ public class PanelController {
 	
 	
 	
+	
+	
+	
 	@GetMapping("profile/{profileId}")
 	public ResponseEntity<?> getPanelsByProfile(@PathVariable("profileId") Long id) {
 		return new ResponseEntity<>(panelService.findAllByProfileId(id), HttpStatus.OK);
 	}
 	
-	
+	@GetMapping("/fileType/{fielsType}")
+	public ResponseEntity<?> getPanelsByFielsType(@PathVariable("fielsType") FielsType fielsType) {
+		return new ResponseEntity<>(panelService.findAllByFielsType(fielsType), HttpStatus.OK);
+	}
 	
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.unifi1.domain.PanelDTO;
+import ua.unifi1.entity.FielsType;
 import ua.unifi1.entity.PanelEntity;
 import ua.unifi1.exception.ResourseNotFoundException;
 import ua.unifi1.repository.PanelRepository;
@@ -57,4 +58,19 @@ public class PanelServiceImpl implements PanelService {
 		return panelMapper.mapAll(panelRepository.findByProfileId(id), PanelDTO.class);
 	}
 
+//	@Override
+//	public List<PanelDTO> findAllByFielsType(FielsType fielsType) {
+//		return panelMapper.mapAll(panelRepository.findByFielsType(fielsType), PanelDTO.class);
+//	}
+
+	@Override
+	public List<PanelDTO> findAllByFielsType(FielsType fielsType) {
+		List<PanelEntity> entity = panelRepository.findByFielsType(fielsType);
+		List<PanelDTO> dto = panelMapper.mapAll(entity, PanelDTO.class);
+		return dto;	
+	}
+	
+	
+	
+	
 }
